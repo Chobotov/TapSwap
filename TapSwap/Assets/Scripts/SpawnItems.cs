@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SpawnItems : MonoBehaviour
+namespace TapSwap
 {
-    [SerializeField] private GameObject[] itemsToSpawn = new GameObject[3];
-    [SerializeField] private GameObject[] SpawnXY = new GameObject[3];
-    [SerializeField] private GameObject GameManage;
-
-    public void Spawn()
+    public class SpawnItems : MonoBehaviour
     {
-        float ItemId = Random.Range(0f,(float)itemsToSpawn.Length);
-        float ItemXY = Random.Range(0f,(float)SpawnXY.Length);
-        Vector3 v = new Vector3(SpawnXY[(int)ItemXY].transform.position.x,transform.position.y);
-        Instantiate(itemsToSpawn[(int)ItemId],v,Quaternion.identity);
+        [SerializeField] private DropItem[] itemsToSpawn;
+        [SerializeField] private Vector3[] spawnXY;
+
+        public void Spawn()
+        {
+            var itemIndex = Random.Range(0, itemsToSpawn.Length);
+            var posIndex = Random.Range(0, spawnXY.Length);
+            var pos = new Vector3(spawnXY[posIndex].x, transform.position.y);
+
+            Instantiate(itemsToSpawn[itemIndex], pos, Quaternion.identity);
+        }
     }
 }

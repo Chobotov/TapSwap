@@ -1,48 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
-public class Pipe : MonoBehaviour
+namespace TapSwap
 {
-    private GameObject GameManage,Player;
-    private AudioSource asrc;
-    public  AudioClip Check,Fail;
-
-    private void Start()
+    public class Pipe : MonoBehaviour
     {
-        GameManage = GameObject.Find("GameManage");
-        Player = GameObject.Find("Player");
-        asrc = Player.GetComponent<AudioSource>();
-         
-    }
+        private GameObject GameManage, Player;
+        private AudioSource asrc;
+        public AudioClip Check, Fail;
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag.Equals(gameObject.tag))
+        private void Start()
         {
-            GameManage.GetComponent<Score>().value += 1;
-            if (GameManage.GetComponent<Score>().value % 5 == 0 && GameManage.GetComponent<GameManager>().heartNum < 2)
-            {
-                GameManage.GetComponent<GameManager>().heartNum += 1;
-                GameManage.GetComponent<GameManager>().ShowHealth(2, false);
-                GameManage.GetComponent<GameManager>().ShowHealth(GameManage.GetComponent<GameManager>().heartNum,true);
-            }
-            GameManage.GetComponent<Score>().SpeedCheck();
-            GameManage.GetComponent<GameManager>().CheckRecord(GameManage.GetComponent<Score>().value);
-            asrc.PlayOneShot(Check);
-            Destroy(collision.gameObject);
+            GameManage = GameObject.Find("GameManage");
+            Player = GameObject.Find("Player");
+            asrc = Player.GetComponent<AudioSource>();
         }
-        else
+
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            GameManage.GetComponent<Score>().value -= 1;
-            GameManage.GetComponent<GameManager>().heartNum -= 1;
-            GameManage.GetComponent<GameManager>().ShowHealth(2, false);
-            GameManage.GetComponent<GameManager>().ShowHealth(GameManage.GetComponent<GameManager>().heartNum, true);
-            GameManage.GetComponent<Score>().SpeedCheck();
-            GameManage.GetComponent<GameManager>().CheckRecord(GameManage.GetComponent<Score>().value);
-            asrc.PlayOneShot(Fail);
-            Destroy(collision.gameObject);
+            if (collision.gameObject.tag.Equals(gameObject.tag))
+            {
+                GameManage.GetComponent<Score>().value += 1;
+                if (GameManage.GetComponent<Score>().value % 5 == 0 &&
+                    GameManage.GetComponent<GameManager>().heartNum < 2)
+                {
+                    GameManage.GetComponent<GameManager>().heartNum += 1;
+                    GameManage.GetComponent<GameManager>().ShowHealth(2, false);
+                    GameManage.GetComponent<GameManager>()
+                        .ShowHealth(GameManage.GetComponent<GameManager>().heartNum, true);
+                }
+
+                GameManage.GetComponent<Score>().SpeedCheck();
+                GameManage.GetComponent<GameManager>().CheckRecord(GameManage.GetComponent<Score>().value);
+                asrc.PlayOneShot(Check);
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                GameManage.GetComponent<Score>().value -= 1;
+                GameManage.GetComponent<GameManager>().heartNum -= 1;
+                GameManage.GetComponent<GameManager>().ShowHealth(2, false);
+                GameManage.GetComponent<GameManager>()
+                    .ShowHealth(GameManage.GetComponent<GameManager>().heartNum, true);
+                GameManage.GetComponent<Score>().SpeedCheck();
+                GameManage.GetComponent<GameManager>().CheckRecord(GameManage.GetComponent<Score>().value);
+                asrc.PlayOneShot(Fail);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
