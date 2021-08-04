@@ -53,9 +53,9 @@ namespace TapSwap
 
         private void ChangeGravity(float value)
         {
-            _redDropItem.GetComponent<Rigidbody2D>().gravityScale = value;
-            _blueDropItem.GetComponent<Rigidbody2D>().gravityScale = value;
-            _greenDropItem.GetComponent<Rigidbody2D>().gravityScale = value;
+            _redDropItem.gravityScale = value;
+            _blueDropItem.gravityScale = value;
+            _greenDropItem.gravityScale = value;
         }
     }
 }
