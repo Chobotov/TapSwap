@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4112311947583230421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4112311947583230443}
+  - component: {fileID: 4112311947583230420}
+  - component: {fileID: 4112311947583230442}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4112311947583230443
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112311947583230421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4112311947583230420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112311947583230421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dda111ab2733fd48b24055a9b7d1626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  Background: {fileID: 0}
+  _gameover: {fileID: 0}
+  Player: {fileID: 0}
+  Main: {fileID: 0}
+  Spawn: {fileID: 0}
+  Game: {fileID: 0}
+  Heal: {fileID: 0}
+  Pipes: {fileID: 0}
+  Buttons: {fileID: 0}
+  PauseButton: {fileID: 0}
+  ScoreTxt: {fileID: 0}
+  Text: {fileID: 0}
+  RestartButton: {fileID: 0}
+  ResumeButton: {fileID: 0}
+  Lines: {fileID: 0}
+  NowScore: {fileID: 0}
+  RecordScore: {fileID: 0}
+  Timer: {fileID: 0}
+  heartNum: 0
+  score: 0
+--- !u!114 &4112311947583230442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112311947583230421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 732857997bb413a4c99a8a1c2f26b8f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 0
+  speed: 5
+  ScoreTxt: {fileID: 0}
+  item1: {fileID: 3270156722027092441, guid: 77a19785810708b4a9ee889951476f4a, type: 3}
+  item2: {fileID: 4867160980490389925, guid: d420f05c41cd6bc4fb6e252bd775f6b6, type: 3}
+  item3: {fileID: 6367203313463507271, guid: 31dd923b19bf6384b97c4517ef7fe57b, type: 3}
