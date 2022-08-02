@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 26122234}
   - component: {fileID: 26122233}
   - component: {fileID: 26122235}
+  - component: {fileID: 26122236}
   m_Layer: 5
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -174,7 +175,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!223 &26122234
 Canvas:
@@ -209,7 +210,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e1071ca5384fe2b5641bab5602b0c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
   _canvasGroup: {fileID: 26122233}
+--- !u!114 &26122236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26122231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &123558172
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +241,7 @@ GameObject:
   - component: {fileID: 123558175}
   - component: {fileID: 123558174}
   - component: {fileID: 123558176}
+  - component: {fileID: 123558177}
   m_Layer: 5
   m_Name: PauseScreen
   m_TagString: Untagged
@@ -260,7 +280,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!223 &123558175
 Canvas:
@@ -295,7 +315,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea9ba67f8d304f09a953623f4cee6bed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
   _canvasGroup: {fileID: 123558174}
+--- !u!114 &123558177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123558172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!850595691 &274665667
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -598,7 +636,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4114299710500745578}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &913804286
 PrefabInstance:
@@ -1668,6 +1706,7 @@ RectTransform:
   - {fileID: 4114299711317750224}
   - {fileID: 4114299709724636359}
   - {fileID: 6439366293364191605}
+  - {fileID: 5185598813918001279}
   m_Father: {fileID: 4114299710500745578}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2382,9 +2421,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2163289748868229792}
-  - component: {fileID: 5751883215491479407}
   - component: {fileID: 3983230611110974596}
+  - component: {fileID: 5751883215491479407}
   - component: {fileID: 5751883215491479408}
+  - component: {fileID: 5751883215491479409}
   m_Layer: 5
   m_Name: GameScreen
   m_TagString: Untagged
@@ -2691,7 +2731,6 @@ RectTransform:
   - {fileID: 2163289748868229792}
   - {fileID: 123558173}
   - {fileID: 26122232}
-  - {fileID: 5185598813918001279}
   - {fileID: 804098625}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -3085,6 +3124,7 @@ GameObject:
   - component: {fileID: 4300504996087994555}
   - component: {fileID: 4300504996087994557}
   - component: {fileID: 4300504996087994556}
+  - component: {fileID: 4300504996087994558}
   m_Layer: 5
   m_Name: StartScreen
   m_TagString: Untagged
@@ -3312,6 +3352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba148fc8f715427486d517fc3eef1d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
   _canvasGroup: {fileID: 4300504996087994557}
   _gameManager: {fileID: 1213740447}
   _start: {fileID: 4114299709871349446}
@@ -3325,8 +3366,25 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &4300504996087994558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114299711037428961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!222 &4424297999529468434
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3451,8 +3509,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4114299710500745578}
-  m_RootOrder: 5
+  m_Father: {fileID: 2163289748868229792}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3717,7 +3775,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &5751883215491479408
 MonoBehaviour:
@@ -3731,7 +3789,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9fe1c5a9b44be3b566241fdc99fc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
   _canvasGroup: {fileID: 5751883215491479407}
+--- !u!114 &5751883215491479409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114299709736706900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &5847618402755002053
 GameObject:
   m_ObjectHideFlags: 0

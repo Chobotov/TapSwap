@@ -7,19 +7,19 @@ namespace TapSwap
 {
     public class GameTimer : MonoBehaviour
     {
+        private const int TimerDuration = 3;
+        
         [SerializeField] private Text _timer;
         
         private IEnumerator Timer(Action onTimerEnd)
         {
-            var num = 3;
             _timer.gameObject.SetActive(true);
-            
-            for (var i = 0; i < 3; i++)
+
+            for (var i = TimerDuration; i >= 0; i--)
             {
-                _timer.text = $"{num}";
-                num -= 1;
-                
-                yield return new WaitForSecondsRealtime(1);
+                _timer.text = $"{i}";
+
+                yield return new WaitForSeconds(1);
             }
 
             _timer.gameObject.SetActive(false);

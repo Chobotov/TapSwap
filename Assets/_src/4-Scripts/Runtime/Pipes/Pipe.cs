@@ -9,12 +9,13 @@ namespace TapSwap
         private const int MinHeartNum = 2;
 
         [SerializeField] private GameManager _gameManager;
-        [SerializeField] AudioClip _check, _fail;
+        [SerializeField] private AudioClip _check, _fail;
 
         private AudioSource _audio;
         private ScoreManager _scoreManager;
 
-        private bool CanIncreaseHealth => _scoreManager.CurrentScore % Multiple == 0 && _gameManager.HealthManager.CurrentHealth < MinHeartNum;
+        private bool CanIncreaseHealth => _scoreManager.CurrentScore % Multiple == 0 
+                                          && _gameManager.HealthManager.CurrentHealth < MinHeartNum;
 
         private void Start()
         {

@@ -11,9 +11,9 @@ namespace TapSwap.Scripts.Managers
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private HealthManager _healthManager;
         [SerializeField] private ScoreManager scoreManagerManager;
-
+        [Space]
         [SerializeField] private GameTimer _gameTimer;
-        
+        [Space]
         [SerializeField] private SpawnItems _spawn;
         
         private ControlPipes _controlPipes;
@@ -22,13 +22,14 @@ namespace TapSwap.Scripts.Managers
 
         private void Awake()
         {
-            var player = Camera.main;
-            _controlPipes = player.GetComponent<ControlPipes>();
+            var camera = Camera.main;
+            _controlPipes = camera.GetComponent<ControlPipes>();
         }
 
         private void Start()
         {
             Time.timeScale = 1f;
+            
             _spawnItems = ItemSpawn();
             
             _uiManager.ShowScreen(ScreenType.StartScreen);
