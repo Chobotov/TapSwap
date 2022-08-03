@@ -1,143 +1,49 @@
-﻿using System.Collections;
+using TapSwap.Managers.UI;
+using TapSwap.Runtime.App;
 using TapSwap.UI;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.Game
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : IGameManager
     {
-        [SerializeField] private UiManager _uiManager;
-        [SerializeField] private AudioManager _audioManager;
-        [SerializeField] private HealthManager _healthManager;
-        [SerializeField] private ScoreManager scoreManagerManager;
-        [Space]
-        [SerializeField] private GameTimer _gameTimer;
-        [Space]
-        [SerializeField] private SpawnItems _spawn;
+        private IRouter _router;
+
+        public GameManager()
+        {
+            _router = DI.Get<IRouter>();
+        }
         
-        private ControlPipes _controlPipes;
-
-        private IEnumerator _spawnItems;
-
-        private void Awake()
+        public void StartSession()
         {
-            var camera = Camera.main;
-            _controlPipes = camera.GetComponent<ControlPipes>();
+            _router.ShowScreen(ScreenType.StartScreen);
         }
 
-        private void Start()
+        public void Start()
         {
-            Time.timeScale = 1f;
-            
-            _spawnItems = ItemSpawn();
-            
-            _uiManager.ShowScreen(ScreenType.StartScreen);
-        }
-
-        private void Update()
-        {
-            _controlPipes.SelectPipe();
-        }
-
-        public IHealthManager HealthManager => _healthManager;
-
-        public void StartGame()
-        {
-            _uiManager.ShowScreen(ScreenType.GameScreen);
-            StartCoroutine(_spawnItems);
+            _router.HideCurrentScreen();
+            _router.ShowScreen(ScreenType.GameScreen);
         }
 
         public void Pause()
         {
-            Time.timeScale = 0f;
-            
-            _uiManager.HideScreen(_uiManager.CurrentScreen.Type);
-            _uiManager.ShowScreen(ScreenType.PauseScreen);
-            
-            //_currentScore.text = $"{_scoreManager.CurrentScore}";
-            //_recordScore.text = $"{PlayerPrefs.GetInt("Record")}";
+            _router.HideCurrentScreen();
+            _router.ShowScreen(ScreenType.PauseScreen);
         }
 
         public void Resume()
         {
-            _gameTimer.StartTimer(OnTimerEnd);
+            
         }
 
         public void Restart()
         {
-            PlayerPrefs.Save();
-            SceneManager.LoadScene(0);
+            
         }
 
         public void Exit()
         {
             PlayerPrefs.Save();
-            Application.Quit();
-        }
-
-        public void UpdateRecord(int score)
-        {
-            var record = PlayerPrefs.GetInt("Record");
-            
-            if (score > record) PlayerPrefs.SetInt("Record", score);
-        }
-
-        private void GameOver()
-        {
-            StopCoroutine(_spawnItems);
-            
-            _audioManager.PlayGameOverSound();
-
-            if (scoreManagerManager.CurrentScore < 0)
-            {
-                //_score.ClearScore();
-                //_scoreValue = 0;
-            }
-            //else _scoreValue = _score.Value;
-
-            /*_currentScore.text = $"{_score.Value}";
-            _score.ClearScore();
-            _heartNum = 2;
-            _recordScore.text = $"{PlayerPrefs.GetInt("Record")}";*/
-        }
-
-        private IEnumerator ItemSpawn()
-        {
-            while (scoreManagerManager.CurrentScore >= 0)
-            {
-                _spawn.Spawn();
-                
-                yield return new WaitForSeconds(0f/*_score.Speed*/);
-            }
-        }
-
-        private void OnEnable()
-        {
-            _healthManager.HealthDecrease += OnHealthDecreased;
-            scoreManagerManager.ScoreChanged += OnScoreChanged;
-        }
-
-        private void OnDisable()
-        {
-            _healthManager.HealthDecrease -= OnHealthDecreased;
-            scoreManagerManager.ScoreChanged -= OnScoreChanged;
-        }
-
-        private void OnHealthDecreased()
-        {
-            if (_healthManager.CurrentHealth < 0) GameOver();
-        }
-
-        private void OnScoreChanged()
-        {
-            if (scoreManagerManager.CurrentScore < 0) GameOver();
-        }
-        
-        private void OnTimerEnd()
-        {
-            _uiManager.HideScreen(_uiManager.CurrentScreen.Type);
-            _uiManager.ShowScreen(ScreenType.GameScreen);
         }
     }
 }

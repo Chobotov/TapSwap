@@ -1,11 +1,13 @@
 using TapSwap.UI;
 
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.UI
 {
-    public interface IUIManager
+    public interface IRouter
     {
         Screen CurrentScreen { get; }
+        void Init();
         void ShowScreen(ScreenType type);
         void HideScreen(ScreenType type);
+        void HideCurrentScreen();
     }
 }

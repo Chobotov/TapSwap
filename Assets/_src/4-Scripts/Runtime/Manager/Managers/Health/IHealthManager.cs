@@ -1,6 +1,6 @@
 using System;
 
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.Health
 {
     public interface IHealthManager
     {
@@ -11,5 +11,6 @@ namespace TapSwap.Scripts.Managers
         
         void IncreaseHealth();
         void DecreaseHealth();
+        void ResetHealth();
     }
 }

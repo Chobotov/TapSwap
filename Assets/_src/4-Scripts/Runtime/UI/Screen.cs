@@ -4,7 +4,6 @@ namespace TapSwap.UI
 {
     public abstract class Screen : MonoBehaviour
     {
-        [SerializeField] private Canvas _canvas;
         [SerializeField] private CanvasGroup _canvasGroup;
 
         public abstract ScreenType Type { get; }

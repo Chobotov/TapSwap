@@ -1,10 +1,11 @@
 using System;
 
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.Score
 {
     public interface IScoreManager
     {
-        Action ScoreChanged { get; set; }
+        Action<int> ScoreChanged { get; set; }
         int CurrentScore { get; }
+        int RecordScore { get; }
     }
 }

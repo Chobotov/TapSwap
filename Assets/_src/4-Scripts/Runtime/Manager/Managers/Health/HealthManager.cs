@@ -1,27 +1,18 @@
 using System;
-using UnityEngine;
 
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.Health
 {
-    public class HealthManager : MonoBehaviour, IHealthManager
+    public class HealthManager : IHealthManager
     {
-        private const int DefaultPlayerHealth = 2;
-        
-        [SerializeField] private GameObject[] _hearts;
+        private const int DefaultPlayerHealth = 3;
 
         private int _currentHealth;
-        
-        private void UpdateHealthView()
-        {
-            for (var i = 0; i <= _hearts.Length; i++) _hearts[i].SetActive(false);
-            for (var i = 0; i <= _currentHealth; i++) _hearts[i].SetActive(true);
-        }
-        
-        private void Start()
-        {
-            _currentHealth = DefaultPlayerHealth;
-        }
 
+        public HealthManager()
+        {
+            ResetHealth();
+        }
+        
         public Action HealthIncrease { get; set; }
         public Action HealthDecrease { get; set; }
         
@@ -30,7 +21,6 @@ namespace TapSwap.Scripts.Managers
         public void IncreaseHealth()
         {
             _currentHealth++;
-            UpdateHealthView();
             HealthIncrease?.Invoke();
         }
 
@@ -38,6 +28,11 @@ namespace TapSwap.Scripts.Managers
         {
             _currentHealth--;
             HealthDecrease?.Invoke();
+        }
+
+        public void ResetHealth()
+        {
+            _currentHealth = DefaultPlayerHealth;
         }
     }
 }

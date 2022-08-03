@@ -1,17 +1,31 @@
 using System.Linq;
+using TapSwap.Runtime.App;
 using TapSwap.UI;
 using UnityEngine;
 using Screen = TapSwap.UI.Screen;
 
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.UI
 {
-    public class UiManager : MonoBehaviour, IUIManager
+    public class Router : MonoBehaviour, IRouter
     {
         [SerializeField] private Screen[] _screens;
+        [SerializeField] private GameObject screenContainer;
 
         private Screen _currentScreen;
 
+        private void Awake()
+        {
+            screenContainer.SetActive(false);
+            
+            DI.Add<IRouter>(this);
+        }
+        
         public Screen CurrentScreen => _currentScreen;
+
+        public void Init()
+        {
+            screenContainer.SetActive(true);
+        }
 
         public void ShowScreen(ScreenType type)
         {
@@ -30,6 +44,11 @@ namespace TapSwap.Scripts.Managers
             if (screen == null) return;
             
             screen.Hide();
+        }
+
+        public void HideCurrentScreen()
+        {
+            HideScreen(_currentScreen.Type);
         }
     }
 }

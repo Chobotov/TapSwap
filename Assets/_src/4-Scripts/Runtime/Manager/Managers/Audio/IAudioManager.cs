@@ -1,9 +1,7 @@
-namespace TapSwap.Scripts.Managers
+namespace TapSwap.Managers.Audio
 {
     public interface IAudioManager
     {
-        void EnableSound();
-        void DisableSound();
-        void PlayGameOverSound();
+        void SetAudioState(bool state);
     }
 }
