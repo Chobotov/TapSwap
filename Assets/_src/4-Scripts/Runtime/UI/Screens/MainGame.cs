@@ -56,6 +56,6 @@ namespace TapSwap.UI.Screens
         }
 
 
-        public override ScreenType Type => ScreenType.GameScreen;
+        public override ScreenType Type => ScreenType.MainGame;
     }
 }

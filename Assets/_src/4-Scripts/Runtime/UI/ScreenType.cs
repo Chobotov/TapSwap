@@ -2,9 +2,9 @@ namespace TapSwap.UI
 {
     public enum ScreenType
     {
-        StartScreen,
-        PauseScreen,
-        GameOverScreen,
-        GameScreen
+        TapToPlay,
+        Pause,
+        GameOver,
+        MainGame
     }
 }

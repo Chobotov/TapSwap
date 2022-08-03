@@ -6,10 +6,14 @@ namespace TapSwap.UI
     {
         [SerializeField] private CanvasGroup _canvasGroup;
 
+        protected virtual void Init() { }
+
         public abstract ScreenType Type { get; }
 
         public void Show()
         {
+            Init();
+
             _canvasGroup.alpha = 1f;
             _canvasGroup.blocksRaycasts = true;
         }

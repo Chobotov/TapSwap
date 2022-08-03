@@ -11,7 +11,7 @@ namespace TapSwap.UI.Screens
         [SerializeField] private Text _recordScore;
         [SerializeField] private Text _currentScore;
         [Space]
-        [SerializeField] private Button _restart;
+        [SerializeField] private ButtonsContainer _buttonsContainer;
 
         private IGameManager _gameManager;
         private IScoreManager _scoreManager;
@@ -24,9 +24,21 @@ namespace TapSwap.UI.Screens
             _recordScore.text = $"{_scoreManager.RecordScore}";
             _currentScore.text = $"{_scoreManager.CurrentScore}";
             
-            _restart.onClick.AddListener(_gameManager.Restart);
+            _buttonsContainer.Restart.onClick.AddListener(_gameManager.Restart);
+            _buttonsContainer.Restart.onClick.AddListener(_buttonsContainer.HideButtons);
         }
 
-        public override ScreenType Type => ScreenType.GameOverScreen;
+        protected override void Init()
+        {
+            base.Init();
+        
+            _buttonsContainer.ShowButtons();
+            
+            _buttonsContainer.Restart.gameObject.SetActive(true);
+            _buttonsContainer.Resume.gameObject.SetActive(false);
+            
+        }
+
+        public override ScreenType Type => ScreenType.GameOver;
     }
 }

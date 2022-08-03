@@ -34,6 +34,6 @@ namespace TapSwap.UI.Screens
             _start.onClick.RemoveAllListeners();
         }
 
-        public override ScreenType Type => ScreenType.StartScreen;
+        public override ScreenType Type => ScreenType.TapToPlay;
     }
 }

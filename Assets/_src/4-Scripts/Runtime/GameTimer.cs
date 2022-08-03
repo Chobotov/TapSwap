@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TapSwap.Runtime.App;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,12 @@ namespace TapSwap
         private const int TimerDuration = 3;
         
         [SerializeField] private Text _timer;
-        
+
+        private void Start()
+        {
+            DI.Add(this);
+        }
+
         private IEnumerator Timer(Action onTimerEnd)
         {
             _timer.gameObject.SetActive(true);
@@ -19,10 +25,11 @@ namespace TapSwap
             {
                 _timer.text = $"{i}";
 
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSecondsRealtime(1);
             }
 
             _timer.gameObject.SetActive(false);
+            _timer.text = "";
 
             Time.timeScale = 1f;
             
