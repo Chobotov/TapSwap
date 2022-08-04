@@ -6,6 +6,7 @@ namespace TapSwap.Managers.Health
     {
         Action HealthIncrease { get; set; }
         Action HealthDecrease { get; set; }
+        Action NoHealth { get; set; }
         
         int CurrentHealth { get; }
         

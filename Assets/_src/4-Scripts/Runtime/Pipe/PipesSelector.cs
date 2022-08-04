@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TapSwap.Pipe
 {
-    public class PipesSelector : MonoBehaviour, IPauseble
+    public class PipesSelector : MonoBehaviour
     {
         [SerializeField] private Pipe[] _pipes;
         
@@ -63,7 +63,8 @@ namespace TapSwap.Pipe
 
         private void OnCircleTouchPipe(Color color1, Color color2)
         {
-            CircleTouchPipe?.Invoke(color1.Equals(color2));
+            var colorsEquals = color1 == color2;
+            CircleTouchPipe?.Invoke(colorsEquals);
         }
 
         public Action<bool> CircleTouchPipe { get; set; }

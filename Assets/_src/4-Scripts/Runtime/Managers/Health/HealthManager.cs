@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace TapSwap.Managers.Health
 {
@@ -15,18 +16,29 @@ namespace TapSwap.Managers.Health
         
         public Action HealthIncrease { get; set; }
         public Action HealthDecrease { get; set; }
-        
+        public Action NoHealth { get; set; }
+
         public int CurrentHealth => _currentHealth;
         
         public void IncreaseHealth()
         {
             _currentHealth++;
+
+            if (_currentHealth >= DefaultPlayerHealth) _currentHealth = DefaultPlayerHealth;
+            
             HealthIncrease?.Invoke();
         }
 
         public void DecreaseHealth()
         {
             _currentHealth--;
+
+            if (_currentHealth <= 0)
+            {
+                _currentHealth = 0;
+                NoHealth?.Invoke();
+            }
+            
             HealthDecrease?.Invoke();
         }
 

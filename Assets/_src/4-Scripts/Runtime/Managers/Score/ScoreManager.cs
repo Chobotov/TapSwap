@@ -9,6 +9,7 @@ namespace TapSwap.Managers.Score
         
         private int _score;
         private int _recordScore;
+        private bool IsHealPoint => _score % 10 == 0;
 
         private void Save()
         {
@@ -26,7 +27,10 @@ namespace TapSwap.Managers.Score
         }
 
         public Action<int> ScoreChanged { get; set; }
-        
+        public Action ScoreIncrease { get; set; }
+        public Action ScoreDecrease { get; set; }
+        public Action HealPoint { get; set; }
+
         public int CurrentScore => _score;
         public int RecordScore => _recordScore;
 
@@ -45,8 +49,11 @@ namespace TapSwap.Managers.Score
                 _recordScore = _score;
                 Save();
             }
-            
+
             ScoreChanged?.Invoke(_score);
+            ScoreIncrease?.Invoke();
+
+            if (IsHealPoint) HealPoint?.Invoke();
         }
 
         public void DecreaseScore(int value = 1)
@@ -56,6 +63,7 @@ namespace TapSwap.Managers.Score
             if (_score < 0) _score = 0;
             
             ScoreChanged?.Invoke(_score);
+            ScoreDecrease?.Invoke();
         }
     }
 }

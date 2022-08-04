@@ -10,6 +10,9 @@ namespace TapSwap.Managers.UI
     {
         [SerializeField] private Screen[] _screens;
         [SerializeField] private GameObject screenContainer;
+        [Space]
+        [SerializeField] private PlayerInfo _playerInfo;
+        [SerializeField] private ButtonsContainer _buttonsContainer;
 
         private Screen _currentScreen;
 
@@ -21,6 +24,8 @@ namespace TapSwap.Managers.UI
         }
         
         public Screen CurrentScreen => _currentScreen;
+        public PlayerInfo PlayerInfo => _playerInfo;
+        public ButtonsContainer ButtonsContainer => _buttonsContainer;
 
         public void Init()
         {

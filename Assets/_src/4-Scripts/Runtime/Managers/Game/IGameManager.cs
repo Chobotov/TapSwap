@@ -7,6 +7,7 @@ namespace TapSwap.Managers.Game
         void Pause();
         void Resume();
         void Restart();
+        void GameOver();
         void Exit();
     }
 }

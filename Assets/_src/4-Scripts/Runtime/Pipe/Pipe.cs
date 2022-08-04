@@ -27,17 +27,14 @@ namespace TapSwap.Pipe
         {
             PipeClicked?.Invoke(this);
         }
-        
-        private void OnTriggerExit2D(Collider2D other)
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out DropItem.DropItem item))
             {
                 CircleTouch?.Invoke(_color, item.Color);
-                
-                Debug.Log("Touched");
+                item.Deactivate();
             }
-
-            Debug.Log("Touch");
         }
     }
 }

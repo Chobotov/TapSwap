@@ -31,6 +31,26 @@ namespace TapSwap.UI.Screens
 
             _scoreManager.ScoreChanged += OnScoreChanged;
         }
+        
+        protected override void Init()
+        {
+            base.Init();
+
+            UpdateHealthView();
+        }
+
+        private void UpdateHealthView()
+        {
+            foreach (var heart in _hearts)
+            {
+                heart.SetActive(false);
+            }
+
+            for (var i = 0; i < _healthManager.CurrentHealth; i++)
+            {
+                _hearts[i].SetActive(true);
+            }
+        }
 
         private void OnScoreChanged(int score)
         {

@@ -15,6 +15,8 @@ namespace TapSwap
         private PipesSelector _pipesSelector;
         private SpawnItems _spawnItems;
 
+        private IEnumerator _spawnCircles;
+
         public GameSession()
         {
             _scoreManager = DI.Get<IScoreManager>();
@@ -22,24 +24,47 @@ namespace TapSwap
             _pipesSelector = DI.Get<PipesSelector>();
             _spawnItems = DI.Get<SpawnItems>();
 
-            _spawnItems.StartCoroutine(SpawnCircles());
+            _spawnCircles = SpawnCircles();
+            _spawnItems.StartCoroutine(_spawnCircles);
             
             _pipesSelector.CircleTouchPipe += OnCircleTouchPipe;
+            _scoreManager.HealPoint += OnReachHealPoint;
+            _healthManager.NoHealth += OnPlayerLose;
         }
-        
+
+        private void OnPlayerLose()
+        {
+            _spawnItems.StopCoroutine(_spawnCircles);
+            _spawnItems.HideItems();
+            
+            _pipesSelector.CircleTouchPipe -= OnCircleTouchPipe;
+            _scoreManager.HealPoint -= OnReachHealPoint;
+            _healthManager.NoHealth -= OnPlayerLose;
+
+            GameState.SwitchTo(GameState.State.GameOver);
+        }
+
+        private void OnReachHealPoint()
+        {
+            _healthManager.IncreaseHealth();
+        }
+
         private IEnumerator SpawnCircles()
         {
             while (GameState.CurrentState != GameState.State.GameOver)
             {
                 _spawnItems.Spawn();
 
-                yield return new WaitForSeconds(Random.Range(2, 5f));
+                yield return new WaitForSeconds(Random.Range(1, 3f));
             }
         }
 
         private void OnCircleTouchPipe(bool isColorsEquals)
         {
-            if (isColorsEquals) _scoreManager.IncreaseScore();
+            if (isColorsEquals)
+            {
+                _scoreManager.IncreaseScore();
+            }
             else
             {
                 _scoreManager.DecreaseScore();

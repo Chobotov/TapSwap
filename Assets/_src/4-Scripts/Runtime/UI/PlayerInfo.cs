@@ -4,21 +4,20 @@ using UnityEngine.UI;
 namespace TapSwap.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class ButtonsContainer : MonoBehaviour
+    public class PlayerInfo : MonoBehaviour
     {
-        [field:SerializeField] public Toggle Audio { get; private set; }
-        [field:SerializeField] public Button Resume { get; private set; }
-        [field:SerializeField] public Button Restart { get; private set; }
-        [field:SerializeField] public Button Exit { get; private set; }
+        [SerializeField] private Text _currentScore;
+        [SerializeField] private Text _recordScore;
 
         private CanvasGroup _canvasGroup;
-        
+
         private void Awake()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
-            
-            Hide();
         }
+
+        public Text CurrentScore => _currentScore;
+        public Text RecordScore => _recordScore;
 
         public void Show()
         {

@@ -5,6 +5,10 @@ namespace TapSwap.Managers.Score
     public interface IScoreManager
     {
         Action<int> ScoreChanged { get; set; }
+        Action ScoreIncrease { get; set; }
+        Action ScoreDecrease { get; set; }
+        Action HealPoint { get; set; }
+        
         int CurrentScore { get; }
         int RecordScore { get; }
         void Reset();

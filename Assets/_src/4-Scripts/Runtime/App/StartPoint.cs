@@ -2,6 +2,7 @@ using TapSwap.Managers.Audio;
 using TapSwap.Managers.Game;
 using TapSwap.Managers.Health;
 using TapSwap.Managers.Score;
+using TapSwap.Managers.Speed;
 using TapSwap.Managers.UI;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace TapSwap.Runtime.App
         private IAudioManager _audioManager;
         private IHealthManager _healthManager;
         private IScoreManager _scoreManager;
+        private ISpeedManager _speedManager;
         
         private StartPoint()
         {
@@ -23,9 +25,8 @@ namespace TapSwap.Runtime.App
 
         private void InitManagers()
         {
-            _gameManager = new GameManager();
-            DI.Add<IGameManager>(_gameManager);
-
+            var router = DI.Get<IRouter>();
+            
             _audioManager = new AudioManager();
             DI.Add<IAudioManager>(_audioManager);
 
@@ -35,9 +36,15 @@ namespace TapSwap.Runtime.App
             _scoreManager = new ScoreManager();
             DI.Add<IScoreManager>(_scoreManager);
 
+            _speedManager = new SpeedManager(_scoreManager);
+            DI.Add<ISpeedManager>(_speedManager);
+            
+            _gameManager = new GameManager(router, _healthManager, _scoreManager);
+            DI.Add<IGameManager>(_gameManager);
+
             Debug.Log("Managers Inited!");
             
-            DI.Get<IRouter>().Init();
+            router.Init();
 
             Debug.Log("Router Inited!");
         }

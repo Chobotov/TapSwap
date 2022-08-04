@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TapSwap.DropItem
 {
@@ -15,9 +14,14 @@ namespace TapSwap.DropItem
 
         public Color Color => _spriteRenderer.color;
         
-        public void StartFalling()
+        public void Activate()
         {
             gameObject.SetActive(true);
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
         }
 
         public void Tick()
