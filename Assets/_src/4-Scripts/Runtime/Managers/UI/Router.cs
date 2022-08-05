@@ -2,6 +2,7 @@ using System.Linq;
 using TapSwap.Runtime.App;
 using TapSwap.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using Screen = TapSwap.UI.Screen;
 
 namespace TapSwap.Managers.UI
@@ -13,6 +14,7 @@ namespace TapSwap.Managers.UI
         [Space]
         [SerializeField] private PlayerInfo _playerInfo;
         [SerializeField] private ButtonsContainer _buttonsContainer;
+        [SerializeField] private Image _backGround;
 
         private Screen _currentScreen;
 
@@ -24,6 +26,7 @@ namespace TapSwap.Managers.UI
         }
         
         public Screen CurrentScreen => _currentScreen;
+
         public PlayerInfo PlayerInfo => _playerInfo;
         public ButtonsContainer ButtonsContainer => _buttonsContainer;
 
@@ -54,6 +57,16 @@ namespace TapSwap.Managers.UI
         public void HideCurrentScreen()
         {
             HideScreen(_currentScreen.Type);
+        }
+        
+        public void HideGameElements()
+        {
+            _backGround.enabled = true;
+        }
+
+        public void ShowGameElements()
+        {
+            _backGround.enabled = false;
         }
     }
 }

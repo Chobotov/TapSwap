@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TapSwap.Game;
 using TapSwap.Managers.Speed;
 using TapSwap.Runtime.App;
 using TapSwap.Utils;
@@ -8,6 +9,8 @@ namespace TapSwap.DropItem
 {
     public class SpawnItems : MonoBehaviour
     {
+        private const int MaxItemsOnScreen = 3;
+        
         [SerializeField] private Color[] _colors;
         [SerializeField] private DropItem[] _itemsToSpawn;
         [SerializeField] private Transform[] _pipes;
@@ -32,6 +35,16 @@ namespace TapSwap.DropItem
                 item.Tick();
             }
         }
+        
+        private void OnGameStateChanged(GameState.State state)
+        {
+            _isPaused = state == GameState.State.Pause;
+
+            foreach (var item in _itemsToSpawn)
+            {
+                item.SetPause(_isPaused);
+            }
+        }
 
         public void HideItems()
         {
@@ -45,7 +58,7 @@ namespace TapSwap.DropItem
         {
             if (_isPaused) return;
             
-            if (_itemsToSpawn.Count(x => x.gameObject.activeSelf) >= 3) return;
+            if (_itemsToSpawn.Count(x => x.gameObject.activeSelf) >= MaxItemsOnScreen) return;
             
             var dropItem = _itemsToSpawn.FirstOrDefault(x => !x.gameObject.activeSelf);
             
@@ -61,18 +74,6 @@ namespace TapSwap.DropItem
                 .SetColor(color)
                 .SetSpeed(_speedManager.CurrentSpeed)
                 .Activate();
-        }
-
-        public bool IsPaused => _isPaused;
-
-        public void OnGameStateChanged(GameState.State state)
-        {
-            _isPaused = state == GameState.State.Pause;
-
-            foreach (var item in _itemsToSpawn)
-            {
-                item.SetPause(_isPaused);
-            }
         }
     }
 }

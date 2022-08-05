@@ -31,8 +31,6 @@ namespace TapSwap.Utils
             _time.gameObject.SetActive(false);
             _time.text = "";
 
-            Time.timeScale = 1f;
-            
             onTimerEnd?.Invoke();
         }
 

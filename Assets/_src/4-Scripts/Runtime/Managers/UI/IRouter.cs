@@ -9,7 +9,10 @@ namespace TapSwap.Managers.UI
         void ShowScreen(ScreenType type);
         void HideScreen(ScreenType type);
         void HideCurrentScreen();
-        
+
+        void ShowGameElements();
+        void HideGameElements();
+
         PlayerInfo PlayerInfo { get; }
         ButtonsContainer ButtonsContainer { get; }
     }

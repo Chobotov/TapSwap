@@ -4,19 +4,24 @@ namespace TapSwap.Managers.Speed
 {
     public class SpeedManager : ISpeedManager
     {
+        private const int StartItemsSpeed = 3;
+        private const int ChangeSpeedTrigger = 5;
+
         private IScoreManager _scoreManager;
         
+        private bool CanChangeSpeed => _scoreManager.CurrentScore % ChangeSpeedTrigger == 0;
+
         private float _currentSpeed;
 
         private void OnScoreIncreased()
         {
-            if (_scoreManager.CurrentScore % 5 != 0) return;
+            if (!CanChangeSpeed) return;
 
             _currentSpeed++;
         }
         private void OnScoreDecreased()
         {
-            if (_scoreManager.CurrentScore % 5 != 0) return;
+            if (!CanChangeSpeed) return;
 
             _currentSpeed--;
         }
@@ -24,7 +29,7 @@ namespace TapSwap.Managers.Speed
         public SpeedManager(IScoreManager scoreManager)
         {
             _scoreManager = scoreManager;
-            _currentSpeed = 3;
+            _currentSpeed = StartItemsSpeed;
 
             _scoreManager.ScoreIncrease += OnScoreIncreased;
             _scoreManager.ScoreDecrease += OnScoreDecreased;

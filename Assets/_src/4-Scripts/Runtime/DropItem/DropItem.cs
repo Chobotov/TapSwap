@@ -2,7 +2,6 @@
 
 namespace TapSwap.DropItem
 {
-    [ExecuteInEditMode]
     public class DropItem : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;

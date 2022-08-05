@@ -1,6 +1,6 @@
 using System;
 
-namespace TapSwap
+namespace TapSwap.Game
 {
     public static class GameState
     {

@@ -1,4 +1,5 @@
 using System;
+using TapSwap.Game;
 using TapSwap.Runtime.App;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace TapSwap.Pipe
             
             foreach (var pipe in _pipes)
             {
-                pipe.PipeClicked += OnPipeClicked;
+                pipe.PipeSelected += OnPipeClicked;
                 pipe.CircleTouch += OnCircleTouchPipe;
             }
         }
@@ -66,14 +67,20 @@ namespace TapSwap.Pipe
             var colorsEquals = color1 == color2;
             CircleTouchPipe?.Invoke(colorsEquals);
         }
-
-        public Action<bool> CircleTouchPipe { get; set; }
-
-        public bool IsPaused => isPaused;
-
-        public void OnGameStateChanged(GameState.State state)
+        
+        private void OnGameStateChanged(GameState.State state)
         {
             isPaused = state == GameState.State.Pause;
         }
+
+        public void AllPipesToDefaultPosition()
+        {
+            foreach (var pipe in _pipes)
+            {
+                pipe.Down();
+            }
+        }
+
+        public Action<bool> CircleTouchPipe { get; set; }
     }
 }

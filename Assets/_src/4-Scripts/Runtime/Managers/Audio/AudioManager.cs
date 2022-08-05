@@ -1,3 +1,5 @@
+using TapSwap.Game;
+using TapSwap.Runtime.App;
 using UnityEngine;
 
 namespace TapSwap.Managers.Audio
@@ -6,26 +8,36 @@ namespace TapSwap.Managers.Audio
     {
         private const string SoundSaveKey = "snd";
 
-        private bool _isSoundEnable;
+        private AudioInitiator _audioInitiator;
+        
+        private bool _isAudioEnable;
 
         private void LoadAudioState()
         {
-            _isSoundEnable = PlayerPrefs.GetInt(SoundSaveKey) > 0;
+            _isAudioEnable = PlayerPrefs.GetInt(SoundSaveKey) > 0;
+            
+            _audioInitiator.SetAudioState(_isAudioEnable);
         }
 
         private void Save()
         {
-            PlayerPrefs.SetInt(SoundSaveKey, _isSoundEnable ? 1 : 0);
+            PlayerPrefs.SetInt(SoundSaveKey, _isAudioEnable ? 1 : 0);
         }
         
         public AudioManager()
         {
+            _audioInitiator = DI.Get<AudioInitiator>();
+            
             LoadAudioState();
         }
 
+        public bool IsAudioEnable => _isAudioEnable;
+
         public void SetAudioState(bool state)
         {
-            _isSoundEnable = true;
+            _isAudioEnable = state;
+            
+            _audioInitiator.SetAudioState(_isAudioEnable);
 
             Save();
         }

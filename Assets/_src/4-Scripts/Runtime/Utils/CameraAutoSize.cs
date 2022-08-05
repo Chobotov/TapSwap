@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace TapSwap.Utils
 {
-    public class CameraSizeSetting : MonoBehaviour
+    public class CameraAutoSize : MonoBehaviour
     {
         private void Awake()
         {

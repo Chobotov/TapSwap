@@ -10,24 +10,8 @@ namespace TapSwap.Pipe
 
         [SerializeField] private Color _color;
 
-        public Action<Pipe> PipeClicked;
-        public Action<Color, Color> CircleTouch;
-
-        public void Up()
-        {
-            transform.position += Vector3.up * YOffset;
-        }
-
-        public void Down()
-        {
-            transform.position += Vector3.down * YOffset;
-        }
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            PipeClicked?.Invoke(this);
-        }
-
+        private bool _isSelected;
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out DropItem.DropItem item))
@@ -35,6 +19,28 @@ namespace TapSwap.Pipe
                 CircleTouch?.Invoke(_color, item.Color);
                 item.Deactivate();
             }
+        }
+
+        public Action<Pipe> PipeSelected;
+        public Action<Color, Color> CircleTouch;
+
+        public void Up()
+        {
+            _isSelected = true;
+            transform.position += Vector3.up * YOffset;
+        }
+
+        public void Down()
+        {
+            if (!_isSelected) return;
+
+            _isSelected = false;
+            transform.position += Vector3.down * YOffset;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            PipeSelected?.Invoke(this);
         }
     }
 }

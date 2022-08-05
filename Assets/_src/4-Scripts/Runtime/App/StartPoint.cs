@@ -39,7 +39,7 @@ namespace TapSwap.Runtime.App
             _speedManager = new SpeedManager(_scoreManager);
             DI.Add<ISpeedManager>(_speedManager);
             
-            _gameManager = new GameManager(router, _healthManager, _scoreManager);
+            _gameManager = new GameManager(router, _healthManager, _scoreManager, _audioManager);
             DI.Add<IGameManager>(_gameManager);
 
             Debug.Log("Managers Inited!");
