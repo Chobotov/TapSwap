@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fbc992393d0df74282cf590672a2e07
+guid: d65880a5fcc825e4680a6257557fca72
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,8 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Squada One
   fontNames:
-  - Squada One
+  - Righteous
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

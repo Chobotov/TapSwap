@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ namespace TapSwap.UI
     public class PlayerInfo : MonoBehaviour
     {
         [SerializeField] private Text _currentScore;
-        [SerializeField] private Text _recordScore;
+        [SerializeField] private TextMeshProUGUI _recordScore;
 
         private CanvasGroup _canvasGroup;
 
@@ -17,7 +18,7 @@ namespace TapSwap.UI
         }
 
         public Text CurrentScore => _currentScore;
-        public Text RecordScore => _recordScore;
+        public TextMeshProUGUI RecordScore => _recordScore;
 
         public void Show()
         {
