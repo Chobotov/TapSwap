@@ -1,3 +1,4 @@
+using TapSwap.Managers.Ads;
 using TapSwap.Managers.Audio;
 using TapSwap.Managers.Game;
 using TapSwap.Managers.Health;
@@ -15,6 +16,8 @@ namespace TapSwap.Runtime.App
         private IHealthManager _healthManager;
         private IScoreManager _scoreManager;
         private ISpeedManager _speedManager;
+
+        private YandexAdsManager _yandexAdsManager;
         
         private StartPoint()
         {
@@ -42,6 +45,9 @@ namespace TapSwap.Runtime.App
             _gameManager = new GameManager(router, _healthManager, _scoreManager, _audioManager);
             DI.Add<IGameManager>(_gameManager);
 
+            _yandexAdsManager = new YandexAdsManager(_scoreManager, _healthManager);
+            DI.Add(_yandexAdsManager);
+
             Debug.Log("Managers Inited!");
             
             router.Init();
@@ -49,7 +55,7 @@ namespace TapSwap.Runtime.App
             Debug.Log("Router Inited!");
         }
         
-        [RuntimeInitializeOnLoadMethod]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void InitGame()
         {
             Debug.Log("Init Game!");

@@ -101,6 +101,7 @@ namespace TapSwap.Managers.Game
             
             _router.HideCurrentScreen();
             
+            _gameTimer.StopTimer();
             _game.EndGame();
             
             StartSession();

@@ -42,6 +42,7 @@ namespace TapSwap.Utils
         public void StopTimer()
         {
             StopAllCoroutines();
+            _time.gameObject.SetActive(false);
         }
     }
 }

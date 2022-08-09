@@ -14,7 +14,7 @@ namespace TapSwap.Managers.Audio
 
         private void LoadAudioState()
         {
-            _isAudioEnable = PlayerPrefs.GetInt(SoundSaveKey) > 0;
+            _isAudioEnable = !PlayerPrefs.HasKey(SoundSaveKey) || PlayerPrefs.GetInt(SoundSaveKey) > 0;
             
             _audioInitiator.SetAudioState(_isAudioEnable);
         }

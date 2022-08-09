@@ -24,6 +24,8 @@ namespace TapSwap.Managers.Speed
             if (!CanChangeSpeed) return;
 
             _currentSpeed--;
+
+            if (_currentSpeed < StartItemsSpeed) _currentSpeed = StartItemsSpeed;
         }
         
         public SpeedManager(IScoreManager scoreManager)
