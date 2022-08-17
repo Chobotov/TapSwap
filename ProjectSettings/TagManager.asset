@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Red
-  - Green
-  - Blue
   - Spot
   layers:
   - Default

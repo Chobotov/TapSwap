@@ -2,6 +2,7 @@ using TapSwap.Game;
 using TapSwap.Managers.Audio;
 using TapSwap.Managers.Health;
 using TapSwap.Managers.Score;
+using TapSwap.Managers.Speed;
 using TapSwap.Managers.UI;
 using TapSwap.Runtime.App;
 using TapSwap.UI;
@@ -16,18 +17,20 @@ namespace TapSwap.Managers.Game
         private IHealthManager _healthManager;
         private IScoreManager _scoreManager;
         private IAudioManager _audioManager;
+        private ISpeedManager _speedManager;
 
         private AudioInitiator _audioInitiator;
         private GameTimer _gameTimer;
 
         private TapSwap.Game.Game _game;
 
-        public GameManager(IRouter router, IHealthManager healthManager, IScoreManager scoreManager, IAudioManager audioManager)
+        public GameManager(IRouter router, IHealthManager healthManager, IScoreManager scoreManager, IAudioManager audioManager, ISpeedManager speedManager)
         {
             _router = router;
             _healthManager = healthManager;
             _scoreManager = scoreManager;
             _audioManager = audioManager;
+            _speedManager = speedManager;
 
             _audioInitiator = DI.Get<AudioInitiator>();
             _gameTimer = DI.Get<GameTimer>();
@@ -108,6 +111,7 @@ namespace TapSwap.Managers.Game
             
             _scoreManager.Reset();
             _healthManager.Reset();
+            _speedManager.Reset();
         }
 
         public void GameOver()

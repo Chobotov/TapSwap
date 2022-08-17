@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0.0.0
+  bundleVersion: 1.0.0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -535,7 +535,7 @@ PlayerSettings:
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
   m_TemplateCustomTags:
-    HIDE_FULL_SCREEN_BUTTON: 1
+    HIDE_FULL_SCREEN_BUTTON: true
   mobileMTRendering:
     Android: 1
     iPhone: 1

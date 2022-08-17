@@ -39,7 +39,7 @@ namespace TapSwap.Game
             {
                 _spawnItems.Spawn();
 
-                yield return new WaitForSeconds(Random.Range(1f, 3f));
+                yield return new WaitForSeconds(Random.Range(1f, 1.5f));
             }
         }
 
@@ -48,14 +48,11 @@ namespace TapSwap.Game
             if (isColorsEquals)
             {
                 _scoreManager.IncreaseScore();
-                
                 _audioInitiator.PlayCorrect();
             }
             else
             {
-                _scoreManager.DecreaseScore();
                 _healthManager.DecreaseHealth();
-                
                 _audioInitiator.PlayIncorrect();
             }
         }
