@@ -1,9 +1,12 @@
 # TapSwap
 
-### My game in Google Play!
+### Google Play!
 [Google Play](https://play.google.com/store/apps/details?id=com.chobotov.tapswap)
 
-### Scrennshots
+### Yandex Games!
+[Yandex Games](https://yandex.ru/games/app/192331?lang=ru)
+
+### Preview
 
 ![Gameplay](https://github.com/Chobotov/TapSwap/blob/master/img/Game.png)
 
